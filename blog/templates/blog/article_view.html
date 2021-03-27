@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}
+	welcome
+{% endblock %}
+
+{% block content %}
+	{{article.article_title}}
+	<p> Author : {{article.author}}</p>
+	<p> Create Date : {{article.pub_date|date:"m-d-Y H:i:s"}} </p>
+	<p class="h5"> {{article.article_content}}</p> 
+{% endblock %}
