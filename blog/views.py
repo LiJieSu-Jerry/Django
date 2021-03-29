@@ -7,10 +7,16 @@ from django.utils import timezone
 from .models import article
 # Create your views here.
 
-def ArticleView(request):
+def Home(request):
 	context={}
 	context['article']=get_object_or_404(article)
-	return render(request,'blog/article_view.html',context)
+	return render(request,'blog/home.html',context)
+
+def Resume(request):
+	return render(request,'blog/resume.html')
+
+
+
 
 	"""
 	template_name='blog/article_view.html'

@@ -1,4 +1,4 @@
-
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,64 +6,43 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	{% load static %}
-	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+	<link rel="stylesheet" href="{% static 'style.css' %}">
 	<!-- Bootstrap css style-->
 		<title>{%block title%}{%endblock%}</title>
 		{% block header_extends %}{% endblock %} <!-- for css extension-->
 </head>
 
 <body>
-	<div class="jumbotron " style="margin-bottom:0">
+	<div class="jumbotron">
  	 	<h1 id="x">Li Jie Su's Blog </h1>
 	</div>
 	<nav class="navbar navbar-inverse">
 	  <div class="container-fluid bg-info">
 		<ul class="nav">
 		  <li class="nav-item">
-		    <a class="nav-link active text-white" href="#">Home</a>
+		    <a class="nav-link active text-white" href="/">Home</a>
 		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link text-white" href="#">Posts</a>
-		  </li>
+		  <li class="nav-item text-white">
+		    <a class="nav-link text-white" href="/resume">Resume</a>
+		  </li> 
 		  <li class="nav-item text-white">
 		    <a class="nav-link text-white" href="#">Album</a>
 		  </li>
 		  <!--
 		  <li class="nav-item text-white">
 		    <a class="nav-link text-white" href="#">Album</a>
-		  </li> --> 
+		  </li> 
+			--> 
 		  <!-- just copy from here to extend link bar--> 
-
 		</ul>
 	  </div>
 	</nav>
-<div class="container">
-  <div class="row">
-    <div class="col-sm-4">
-      <h2>About me</h2>
-      <h5>My picture:</h5>
-      <div class="fakeimg"><img src={% static 'me.jpg'%} width=150 height=200></div>
-      <p>Self Introduction..</p>
-      <h3>Links</h3>
-      <p>Links Description</p>
-      <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="#">Link 1</a></li>
-        <li><a href="#">Link 2</a></li>
-        <li><a href="#">Link 3</a></li>
-      </ul>
-      <hr class="hidden-sm hidden-md hidden-lg">
-    </div>
-    <div class="col-sm-8">
-		{% block content %}{%endblock%}
-    </div>
-  </div>
-</div>
+	{% block content %}{%endblock%}
+
  
-<div class="jumbotron justify-content-start" style="margin-bottom:50">
-  <p>If you have any question about this webiste, me or other things please feel free to contatct me <br>Contat information<br>Email: opwinopwin@gmail.com</p>
-
-
+<div id="bottomJumbo" class="jumbotron justify-content-start" >
+   <br>Contat information<br>Email: opwinopwin@gmail.com</p>
 </div>
 
 	<!--Bootstrap java scripts-->

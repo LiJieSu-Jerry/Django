@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+
+{%block title%}Home page{%endblock%}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+      <h2>About author</h2>
+
+      <div><img src={% static 'me.jpg'%} width=150 height=200 ></div>
+      <p>I am Li Jie Su, I come from Taiwan. <br>
+        I love coding, cooking and video games!This is my first blog.<br>
+        I built it with Django and Bootstrap.<br>
+      </p>
+      <h3>Links</h3>
+      <ul class="">
+        <li class="active"><a href="https://github.com/LiJieSu-Jerry/-Portfolio" target="_blank">Git hub</a></li><br>
+        <li><a href="https://www.linkedin.com/in/lzsu/" target="_blank">LinkedIn</a></li><br>
+      </ul>
+      <hr class="hidden-sm hidden-md hidden-lg">
+    </div>
+    <div class="col-sm-9">
+      <p class="font-weight-bold h1" style="font-size: 50px">
+        Welcome to Li Jie Su's blog! <br>
+        Some content is still building <br>
+        Feel free to looking around! <br> 
+      </p>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-3">
+            <p>
+              haha
+            </p>
+          </div>
+          <div class="col-sm-3">
+                        <p>
+              haha
+            </p>
+          </div> 
+          <div class="col-sm-3">
+                        <p>
+              haha
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
