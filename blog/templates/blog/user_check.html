@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{%block title%}Authentication Check{%endblock%}
+
+{% block content %}
+{% if request.user.is_authenticated %}
+<p>Login success</p>
+
+{% else %}
+<p>You didn't login yet!</p>
+
+<a href="/login"> Login page </a>
+
+{% endif %}
+
+{% endblock %}

@@ -15,33 +15,39 @@
         I built it with Django and Bootstrap.<br>
       </p>
       <h3>Links</h3>
-      <ul class="">
-        <li class="active"><a href="https://github.com/LiJieSu-Jerry/-Portfolio" target="_blank">Git hub</a></li><br>
+      <ul class="active font-weight-bold">
+        <li class=""><a href="https://github.com/LiJieSu-Jerry/-Portfolio" target="_blank" >Github</a></li><br>
         <li><a href="https://www.linkedin.com/in/lzsu/" target="_blank">LinkedIn</a></li><br>
       </ul>
-      <hr class="hidden-sm hidden-md hidden-lg">
+      
     </div>
     <div class="col-sm-9">
       <p class="font-weight-bold h1" style="font-size: 50px">
+        {{message}}<br>
+        The total traffic of this website is {{traffic}}<br>
+        The number of posts is {{post_list|length}}<br>
+        Your IP Location is {{region}}, {{country}}<br>
         Welcome to Li Jie Su's blog! <br>
         Some content is still building <br>
-        Feel free to looking around! <br> 
+        Feel free to look around! <br> 
       </p>
-      <div class="container">
+      <hr>
+      <h2>You may want to see...</h2>
+      <div class="container-fluid">
         <div class="row">
           <div class="col-sm-3">
             <p>
-              haha
+              The new coding posts!
             </p>
           </div>
           <div class="col-sm-3">
                         <p>
-              haha
+              My capstone research!
             </p>
           </div> 
           <div class="col-sm-3">
                         <p>
-              haha
+              or Miscellaneous?
             </p>
           </div>
         </div>

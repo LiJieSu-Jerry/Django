@@ -1,7 +1,36 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&display=swap');
+
 body {
 	background-color: #9D9D9D;
+	font-family: 'Kiwi Maru', serif;
 }
 
 #bottomJumbo{
 	margin-bottom:0;
+	background-color:black; 
+	color:white;
+}
+a{
+	text-decoration:underline;
+	color:white;
+}
+
+hr{
+	border:5px solid red;
+}
+
+.dropdown:hover>.dropdown-menu{
+display: block;
+}
+
+.dropdown-item {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  background
+}
+.dropdown-menu{
+	background-color:#18a4bc;
 }

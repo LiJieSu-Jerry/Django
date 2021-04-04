@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+
+{%block title%}Form test{%endblock%}
+
+{% block content %}
+<form action="" method="post">
+	{% csrf_token %}
+    <label for="response">Response: </label>
+    <input id="response" type="text" name="content" onfocus="this.value=''" value="Enter your response">
+    <brsa><input type="submit" value="OK">
+</form>
+
+<p>{{ rlt }}</p>
+{% endblock %}
