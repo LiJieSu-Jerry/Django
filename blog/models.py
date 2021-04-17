@@ -14,7 +14,7 @@ class Post(models.Model):
 class Response(models.Model):
 	pub_date=models.DateTimeField('date published',auto_now_add=True)
 	response_content=models.TextField()
-	reponsed_post=models.ForeignKey(Post,on_delete=models.CASCADE,)
+	#reponsed_post=models.ForeignKey(Post,on_delete=models.CASCADE,)
 
 class Visitor(models.Model):
 	ip_address = models.GenericIPAddressField()

@@ -32,12 +32,16 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'blog.apps.BlogConfig',
+    'api.apps.ApiConfig',
+    'snippets.apps.SnippetsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+
 ]
 
 MIDDLEWARE = [
@@ -48,7 +52,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'ipinfo_django.middleware.IPinfo',
 ]
 
 ROOT_URLCONF = 'mainsite.urls'
@@ -107,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'America/NewYork'
+TIME_ZONE = 'America/New_York'
 
 USE_I18N = True
 

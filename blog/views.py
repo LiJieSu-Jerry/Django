@@ -6,9 +6,10 @@ from django.utils import timezone
 from django.contrib import auth
 from django.views.decorators import csrf
 from pathlib import Path
-import ipinfo
 import datetime
 import os
+import json
+import urllib.request
 
 from .models import Post,Response,Visitor
 # Create your views here.
@@ -18,15 +19,18 @@ STATIC_FILES_DIR=os.path.join(BASE_DIR,'blog/static/')
 
 
 def Home(request):
-	visit_ip= ipinfo(request).ip
+	visit_ip='73.134.227.100'#request.META['REMOTE_ADDR']
 	context={}
+	response=ipinfo(visit_ip)
+	context['message']=last_time_visit_message(visit_ip)
 	if is_new_traffic(visit_ip):
 		record_traffic()
+	context['ip']=visit_ip
 	context['traffic']=get_traffic()
-	context['message']=last_time_visit_message(visit_ip)
+	
 	context['post_list']=Post.objects.all()
-	context['country']=ipinfo(request).country_name
-	context['region']=ipinfo(request).region
+	context['country']=response['country']
+	context['region']=response['regionName']
 	return render(request,'blog/home.html',context)
 
 def Resume(request):
@@ -65,18 +69,15 @@ def Response_receive_post(request):
 	return render(request,'blog/form.html',context)
 
 
-def get_ip_details(ip_address=None):
-	ipinfo_token = getattr(settings, "IPINFO_TOKEN", None)
-	ipinfo_settings = getattr(settings, "IPINFO_SETTINGS", {})
-	ip_data = ipinfo.getHandler(ipinfo_token, **ipinfo_settings)
-	ip_data = ip_data.getDetails(ip_address)
-	return ip_data
+def ipinfo(ip_address):
+	request  = 'http://ip-api.com/json/'+ip_address
+	req= urllib.request.Request(request)
+	response= urllib.request.urlopen(req).read()
+	json_response   = json.loads(response.decode('utf-8'))
+	print(json_response['regionName'])
+	return json_response
 
 
-
-
-def ipinfo(request):
-	return request.ipinfo
 
 def is_new_traffic(visit_ip):
 	try:
@@ -89,9 +90,9 @@ def is_new_traffic(visit_ip):
 		new_visitor.save()
 		return True
 	else:
-		if now_visitor.visit_time-datetime.timedelta(days=1)>=now_time-datetime.timedelta(days=1):
-			print("change")
+		if now_time-now_visitor.visit_time>=datetime.timedelta(days=1):
 			Visitor.objects.filter(ip_address=visit_ip).update(visit_time=now_time)
+			return True
 		else:
 			return False
 
@@ -104,7 +105,6 @@ def last_time_visit_message(visit_ip):
 		return "This is the first time you visit this website."
 	else:
 		a=now_visitor.visit_time.date()
-		print(type(now_visitor.visit_time))
 		#date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f')
 		message="Hello, the time of your last visit is {}".format(a)
 		return message
@@ -128,33 +128,29 @@ def get_traffic():
 		count_text=f.readline()
 	return count_text
 
-	"""
-	>>> request.ipinfo.all
-	{
-	'asn': {  'asn': 'AS20001',
-	           'domain': 'twcable.com',
-	           'name': 'Time Warner Cable Internet LLC',
-	           'route': '104.172.0.0/14',
-	           'type': 'isp'},
-	'city': 'Los Angeles',
-	'company': {   'domain': 'twcable.com',
-	               'name': 'Time Warner Cable Internet LLC',
-	               'type': 'isp'},
-	'country': 'US',
-	'country_name': 'United States',
-	'hostname': 'cpe-104-175-221-247.socal.res.rr.com',
-	'ip': '104.175.221.247',
-	'loc': '34.0293,-118.3570',
-	'latitude': '34.0293',
-	'longitude': '-118.3570',	
-	'phone': '323',
-	'postal': '90016',
-	'region': 'California'
-	}
+
+
+    
+
+"""
+{'status': 'success', 
+'country': 'United States', 
+'countryCode': 'US', 
+'region': 'MD', 
+'regionName': 'Maryland', 
+'city': 'Bethesda', 
+'zip': '20814', 
+'lat': 39.0016, 
+'lon': -77.0961, 
+'timezone': 'America/New_York', 
+'isp': 'Comcast Cable Communications, LLC', 
+'org': 'Comcast Cable Communications, Inc.', 
+'as': 'AS7922 Comcast Cable Communications, LLC', 
+'query': '73.134.227.105'}
 	"""
 
 
-	"""
+"""
 	def get_queryset(self):
 		return article.objects.filter(pub_date__lte=timezone.now()).order_by('-pub_date')[:5]
 	"""
